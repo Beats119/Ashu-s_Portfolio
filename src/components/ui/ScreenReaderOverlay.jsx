@@ -1,0 +1,2 @@
+import {ROOMS} from '../../data/content'
+export default function ScreenReaderOverlay(){return <main className="sr-only">{ROOMS.map(r=><section key={r.id}><h2>{r.title}</h2><p>{r.copy}</p><ul>{r.tags.map(t=><li key={t}>{t}</li>)}</ul></section>)}</main>}
