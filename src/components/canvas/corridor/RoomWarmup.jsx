@@ -1,0 +1,3 @@
+import {ROOMS} from '../../../data/content'
+import RoomInterior from './RoomInterior'
+export default function RoomWarmup({onWarmupComplete}){if(!ROOMS?.length)return null;return <group position={[0,-100,0]} visible={false}><RoomInterior label="SYSTEMS" roomId="systems" showRoom onReady={onWarmupComplete}/><RoomInterior label="VOICE" roomId="voice" showRoom/><RoomInterior label="ARCHIVE" roomId="research" showRoom/><RoomInterior label="FIELD LOG" roomId="field" showRoom/></group>
