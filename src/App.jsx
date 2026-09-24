@@ -1,5 +1,6 @@
 import {useCallback,useEffect,useState} from 'react'
-import {Canvas,PerformanceMonitor,Preload} from '@react-three/fiber'
+import {Canvas,PerformanceMonitor} from '@react-three/fiber'
+import {Preload} from '@react-three/drei'
 import {Suspense} from 'react'
 import {PerformanceProvider,usePerformance} from './context/PerformanceContext'
 import {AchievementsProvider} from './context/AchievementsContext'
