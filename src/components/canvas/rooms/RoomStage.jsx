@@ -1,30 +1,32 @@
-import {Float,Text} from '@react-three/drei'
+import {Text,Float} from '@react-three/drei'
 import * as THREE from 'three'
-export default function RoomStage({room}){
- const color=room.kind==='voice'?'#dfeae6':room.kind==='generation'?'#ece1d8':'#ebe7df'
- return <group position={[0,0,-3]}>
-  <mesh position={[0,-.25,-12]}><boxGeometry args={[24,.2,18]}/><meshBasicMaterial color="#d2ccc0"/></mesh>
-  <mesh position={[0,5.8,-12]} rotation={[Math.PI/2,0,0]}><planeGeometry args={[24,18]}/><meshBasicMaterial color="#f1eee5"/></mesh>
-  <mesh position={[-11.8,2.8,-12]} rotation={[0,Math.PI/2,0]}><planeGeometry args={[18,6]}/><meshBasicMaterial color="#ddd8cb"/></mesh>
-  <mesh position={[11.8,2.8,-12]} rotation={[0,-Math.PI/2,0]}><planeGeometry args={[18,6]}/><meshBasicMaterial color="#ddd8cb"/></mesh>
-  <mesh position={[0,2.8,-20.8]}><planeGeometry args={[24,6]}/><meshBasicMaterial color="#f0ece3"/></mesh>
-  <Text position={[0,4.2,-20.4]} fontSize={1.15} color="#292821" anchorX="center" anchorY="middle" maxWidth={18} textAlign="center">{room.title}</Text>
-  <Text position={[0,3.25,-20.35]} fontSize={.25} color="#777269" anchorX="center" anchorY="middle">{room.sub}</Text>
-  {room.kind==='systems'&&<SystemsArt/>}
-  {room.kind==='voice'&&<VoiceArt/>}
-  {room.kind==='generation'&&<GenerationArt/>}
-  {room.kind==='research'&&<ResearchArt/>}
-  {room.kind==='field'&&<FieldArt/>}
-  {room.kind==='origin'&&<OriginArt/>}
-  {room.kind==='contact'&&<ContactArt/>}
-  <mesh position={[0,-.02,-11.7]}><boxGeometry args={[5.5,.06,3.4]}/><meshBasicMaterial color={color}/></mesh>
+export default function RoomStage({room,z}){
+ const accent=room.kind==='voice'?'#5d9f96':room.kind==='generation'?'#d8674e':'#5f685f'
+ return <group position={[0,-.05,z-5]}>
+  <mesh position={[0,-.15,-8]}><planeGeometry args={[22,17]}/><meshBasicMaterial color="#dfd9cc"/></mesh>
+  <mesh position={[0,5.55,-8]} rotation={[Math.PI/2,0,0]}><planeGeometry args={[22,16]}/><meshBasicMaterial color="#f1ede2"/></mesh>
+  <mesh position={[-11,2.7,-8]} rotation={[0,Math.PI/2,0]}><planeGeometry args={[16,5.7]}/><meshBasicMaterial color="#d9d3c6"/></mesh>
+  <mesh position={[11,2.7,-8]} rotation={[0,-Math.PI/2,0]}><planeGeometry args={[16,5.7]}/><meshBasicMaterial color="#d9d3c6"/></mesh>
+  <Text position={[0,4.2,-15.8]} fontSize={.82} color="#2d2b25" anchorX="center" anchorY="middle" maxWidth={18} textAlign="center">{room.title}</Text>
+  <Text position={[0,3.55,-15.7]} fontSize={.19} color="#777268" anchorX="center" anchorY="middle">{room.sub}</Text>
+  <Float speed={1.2} rotationIntensity={.08} floatIntensity={.14}>
+    <mesh position={[0,2.2,-13.9]}><planeGeometry args={[5.8,3.1]}/><meshBasicMaterial color="#f7f2e7"/></mesh>
+    <mesh position={[0,2.2,-13.72]}><planeGeometry args={[5.1,2.4]}/><meshBasicMaterial color={accent}/>
+    </mesh>
+  </Float>
+  {room.kind==='systems'&&<SystemDiagram/>}
+  {room.kind==='voice'&&<VoiceDiagram accent={accent}/>}
+  {room.kind==='generation'&&<GenerationDiagram accent={accent}/>}
+  {room.kind==='research'&&<ResearchDiagram/>}
+  {room.kind==='field'&&<FieldDiagram/>}
+  {room.kind==='origin'&&<OriginDiagram/>}
+  {room.kind==='contact'&&<ContactDiagram/>}
  </group>
 }
-function Monitor({x,y,z,label,sub}){return <group position={[x,y,z]}><mesh><boxGeometry args={[2.9,1.8,.15]}/><meshBasicMaterial color="#26251f"/></mesh><mesh position={[0,0,.1]}><planeGeometry args={[2.55,1.45]}/><meshBasicMaterial color="#eef1eb"/></mesh><Text position={[0,.15,.12]} fontSize={.2} color="#2f312c" anchorX="center" anchorY="middle" maxWidth={2.2} textAlign="center">{label}</Text><Text position={[0,-.25,.12]} fontSize={.09} color="#7c7b72" anchorX="center" anchorY="middle">{sub}</Text></group>}
-function SystemsArt(){return <group><Monitor x={-4.2} y={2.1} z={-8.7} label="RAG" sub="retrieve → context"/><Monitor x={0} y={2.1} z={-8.8} label="AGENTS" sub="tools → action"/><Monitor x={4.2} y={2.1} z={-8.7} label="MCP" sub="server layer"/><mesh position={[0,4.65,-8.8]}><torusGeometry args={[1.25,.035,8,64]}/><meshBasicMaterial color="#d8674e"/></mesh></group>}
-function VoiceArt(){return <group>{Array.from({length:40},(_,i)=>{const x=(i-20)*.28,y=2.1+Math.sin(i*.7)*.65;return <mesh key={i} position={[x,y,-8.9]}><boxGeometry args={[.07,.35+Math.abs(Math.sin(i*.7))*.9,.04]}/><meshBasicMaterial color={i%8===0?'#d8674e':'#5d9f96'}/></mesh>})}</group>}
-function GenerationArt(){return <group>{Array.from({length:100},(_,i)=>{const a=i*.37,r=.25+(i%10)*.16,x=Math.cos(a)*r,y=1.9+Math.sin(a)*r;return <mesh key={i} position={[x,y,-8.8]}><boxGeometry args={[.06,.06,.06]}/><meshBasicMaterial color={i%9===0?'#d8674e':'#444238'}/></mesh>})}<Text position={[0,3.7,-8.7]} fontSize={.35} color="#d8674e">NOISE → CONTROL</Text></group>}
-function ResearchArt(){return <group>{[-3.2,0,3.2].map((x,i)=><mesh key={i} position={[x,2,-8.9]} rotation={[0,0,(i-1)*.08]}><boxGeometry args={[2.4,2.9,.05]}/><meshBasicMaterial color="#f7f3ea"/><Text position={[0,1.05,.05]} fontSize={.16} color="#38362f" maxWidth={2} textAlign="center">PAPER {i+1}</Text><Text position={[0,.3,.05]} fontSize={.1} color="#777269" maxWidth={1.9} textAlign="center">{i===0?'IEEE / YOLO':i===1?'ICIP / SD':'CORRESPONDING AUTHOR'}</Text></mesh>)}</group>}
-function FieldArt(){return <group><Monitor x={-3.4} y={2.1} z={-8.9} label="SAMESPACE" sub="production AI"/><Monitor x={0} y={2.1} z={-8.9} label="HYPERVERGE" sub="research"/><Monitor x={3.4} y={2.1} z={-8.9} label="INDIAAI" sub="research grant"/></group>}
-function OriginArt(){return <group><Text position={[-2.4,2.3,-8.9]} fontSize={.5} color="#292821">SRM</Text><Text position={[2.3,2.3,-8.9]} fontSize={.5} color="#292821">IIT PATNA</Text><Text position={[0,3.2,-8.8]} fontSize={.25} color="#d8674e">9.04 / 10.00</Text><mesh position={[0,2,-8.7]} rotation={[Math.PI/2,0,0]}><planeGeometry args={[5,.035]}/><meshBasicMaterial color="#5d9f96"/></mesh></group>}
-function ContactArt(){return <group><mesh position={[0,2,-8.8]}><boxGeometry args={[4.8,2.5,.05]}/><meshBasicMaterial color="#f7f3ea"/></mesh><Text position={[0,2.45,-8.7]} fontSize={.35} color="#292821">SYSTEM READY</Text><Text position={[0,1.72,-8.7]} fontSize={.21} color="#777269" anchorX="center" maxWidth={4.2}>beats119119@gmail.com</Text></group>}
+function SystemDiagram(){return <group position={[0,1.9,-13.55]}>{[['DOCS',-4],['VECTOR',-1.35],['RAG',1.35],['AGENT',4]].map(([t,x])=><group key={t} position={[x,0,0]}><mesh><boxGeometry args={[1.9,1.1,.04]}/><meshBasicMaterial color="#efeadf"/></mesh><Text position={[0,0,.04]} fontSize={.18} color="#2d2b25" anchorX="center" anchorY="middle">{t}</Text></group>)}<Text position={[0,-.95,0]} fontSize={.15} color="#777268">documents → embeddings → retrieval → action</Text></group>}
+function VoiceDiagram({accent}){return <group position={[0,2,-13.52]}>{Array.from({length:54},(_,i)=><mesh key={i} position={[-5.1+i*.19,Math.sin(i*.65)*.4,0]}><boxGeometry args={[.055,.35+Math.abs(Math.sin(i*.65))*1.1,.03]}/><meshBasicMaterial color={i%11===0?'#d8674e':accent}/></mesh>)}<Text position={[0,-1.15,.02]} fontSize={.17} color="#777268">multilingual TTS · code-switching · accent translation</Text></group>}
+function GenerationDiagram({accent}){return <group position={[0,2,-13.52]}>{Array.from({length:150},(_,i)=>{const a=i*.33,r=.2+(i%18)*.07;return <mesh key={i} position={[Math.cos(a)*r,Math.sin(a)*r,0]}><boxGeometry args={[.045,.045,.045]}/><meshBasicMaterial color={i%13===0?'#d8674e':accent}/></mesh>})}<Text position={[0,-1.2,.02]} fontSize={.18} color="#777268">Stable Diffusion + LoRA + ControlNet + IP-Adapter</Text></group>}
+function ResearchDiagram(){return <group position={[0,2,-13.52]}>{[-2.8,0,2.8].map((x,i)=><group key={i} position={[x,0,0]} rotation={[0,0,(i-1)*.05]}><mesh><boxGeometry args={[2.1,2.7,.04]}/><meshBasicMaterial color="#f6f1e6"/></mesh><Text position={[0,.72,.04]} fontSize={.14} color="#292720" anchorX="center" maxWidth={1.7} textAlign="center">{i===0?'IEEE / YOLO':i===1?'ICIP / STABLE DIFFUSION':'CORRESPONDING AUTHOR'}</Text></group>)}</group>}
+function FieldDiagram(){return <group position={[0,2,-13.52]}>{['SAMESPACE','HYPERVERGE','INDIAAI'].map((t,i)=><group key={t} position={[(i-1)*3,0,0]}><mesh><boxGeometry args={[2.4,1.5,.05]}/><meshBasicMaterial color="#eeeadf"/></mesh><Text position={[0,.1,.06]} fontSize={.17} color="#292720" anchorX="center" anchorY="middle">{t}</Text></group>)}</group>}
+function OriginDiagram(){return <group position={[0,1.95,-13.5]}><Text position={[-3.1,0,0]} fontSize={.5} color="#292720">SRM</Text><Text position={[2.2,0,0]} fontSize={.42} color="#292720">IIT PATNA</Text><Text position={[0,-.85,0]} fontSize={.2} color="#d8674e">9.04 / 10.00</Text></group>}
+function ContactDiagram(){return <group position={[0,1.95,-13.5]}><Text fontSize={.36} color="#292720" anchorX="center">SYSTEM READY.</Text><Text position={[0,-.75,0]} fontSize={.2} color="#777268" anchorX="center">beats119119@gmail.com</Text></group>}
