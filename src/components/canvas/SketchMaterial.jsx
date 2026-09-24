@@ -1,0 +1,4 @@
+import * as THREE from 'three'
+export function sketchTexture(label='SKETCH'){
+ const c=document.createElement('canvas');c.width=512;c.height=256;const x=c.getContext('2d');x.fillStyle='#ece7dc';x.fillRect(0,0,c.width,c.height);x.strokeStyle='#393832';x.lineWidth=6;x.strokeRect(18,18,476,220);x.globalAlpha=.22;for(let i=0;i<22;i++){x.beginPath();x.moveTo(30,30+i*9);x.lineTo(480,30+i*9+(i%2));x.stroke()}x.globalAlpha=1;x.fillStyle='#292821';x.font='700 58px Arial';x.fillText(label,40,130);x.fillStyle='#c96752';x.fillRect(40,157,150,5);return new THREE.CanvasTexture(c)}
+export function paperTexture(){const c=document.createElement('canvas');c.width=256;c.height=256;const x=c.getContext('2d');x.fillStyle='#ece7dc';x.fillRect(0,0,256,256);x.strokeStyle='#d0c9ba';x.globalAlpha=.55;x.lineWidth=1;for(let y=24;y<256;y+=24){x.beginPath();x.moveTo(0,y);x.lineTo(256,y);x.stroke()}return new THREE.CanvasTexture(c)}
