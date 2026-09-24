@@ -1,18 +1,20 @@
-import {useCallback,useState} from 'react'
+import {useCallback,useRef,useState} from 'react'
 import {useFrame,useThree} from '@react-three/fiber'
 import {useScene} from '../../../context/SceneContext'
 import CorridorSegment,{SEGMENT_LENGTH} from './CorridorSegment'
 
 function SegmentVisibility({children,segmentIndex}){
-  const ref = useState(null)[0]
+  const ref=useRef()
   const {camera}=useThree()
+
   useFrame(()=>{
-    if(!ref?.current)return
+    if(!ref.current)return
     const startZ=10-(segmentIndex*SEGMENT_LENGTH)
     const endZ=startZ-SEGMENT_LENGTH
     const visible=!(camera.position.z<endZ-5||camera.position.z>startZ+30)
     if(ref.current.visible!==visible)ref.current.visible=visible
   })
+
   return <group ref={ref}>{children}</group>
 }
 
