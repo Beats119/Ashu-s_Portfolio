@@ -1,0 +1,21 @@
+export const ROOMS=[
+{id:'systems',label:'THE SYSTEMS',short:'RAG / AGENTS',side:'left',z:-18,kind:'systems',title:'THE SYSTEMS LAB',sub:'RETRIEVAL · TOOLS · AGENTS',copy:'Production AI work across Retrieval-Augmented Generation, embeddings, tool calling, multi-agent systems, Google ADK and MCP servers.',tags:['RAG','FAISS','QDRANT','WEAVIATE','GOOGLE ADK','MCP']},
+{id:'voice',label:'THE VOICE LAB',short:'TTS / SIGNAL',side:'right',z:-32,kind:'voice',title:'THE VOICE LAB',sub:'SPEECH · SIGNAL · TRANSLATION',copy:'Multilingual TTS, code-switching, voice enhancements and contribution to a speech-to-speech accent-translation system.',tags:['MULTILINGUAL TTS','CODE-SWITCHING','VOICE ENHANCEMENT','ACCENT TRANSLATION']},
+{id:'generation',label:'THE GENERATION LAB',short:'DIFFUSION / CONTROL',side:'left',z:-46,kind:'generation',title:'THE GENERATION LAB',sub:'DIFFUSION · CONTROL',copy:'Generative-vision research using Stable Diffusion with LoRA, ControlNet, IP-Adapter and inpainting.',tags:['STABLE DIFFUSION','LORA','CONTROLNET','IP-ADAPTER','INPAINTING']},
+{id:'research',label:'THE ARCHIVE',short:'PAPERS / EVIDENCE',side:'right',z:-60,kind:'research',title:'THE ARCHIVE',sub:'PUBLICATIONS · RESEARCH',copy:'IEEE research and an ICICS 2025 corresponding-author paper connect the engineering work to published research.',tags:['IEEE','ICICS 2025','YOLO','ICIP']},
+{id:'field',label:'FIELD LOG',short:'SAMESPACE / INDIAAI',side:'left',z:-74,kind:'field',title:'FIELD LOG',sub:'PRODUCTION · RESEARCH',copy:'Samespace, HyperVerge Nexus and IndiaAI Mission — production AI systems and research across 2024–2026.',tags:['SAMESPACE','HYPERVERGE NEXUS','INDIAAI MISSION']},
+{id:'origin',label:'ORIGIN',short:'SRM / IIT PATNA',side:'right',z:-88,kind:'origin',title:'ORIGIN',sub:'EDUCATION · NEXT NODE',copy:'B.Tech in CSE (AI & ML), CGPA 9.04/10.00. Now pursuing an M.Tech in Artificial Intelligence at IIT Patna.',tags:['SRM IST','9.04 / 10.00','IIT PATNA']},
+{id:'contact',label:"LET'S CONNECT",short:'EMAIL / GITHUB / CV',side:'left',z:-102,kind:'contact',title:"LET'S CONNECT",sub:'BUILD SOMETHING INTERESTING',copy:'Have an interesting AI problem? I like the part after the demo.',tags:['EMAIL','GITHUB','RESUME']}
+]
+
+export const EXPERIENCE=[
+{company:'Samespace',role:'SDE-1 AI/ML Engineer',date:'Jul 2025 – Jun 2026',items:['Built end-to-end RAG pipelines using embeddings, FAISS and hybrid retrieval.','Fine-tuned foundation models for customer-specific tool-calling and instruction-following.','Designed multi-agent systems using Google ADK and custom MCP servers.','Built multilingual TTS pipelines with code-switching and custom voice enhancements.','Implemented guardrails and automated evaluations that catch regressions pre-release.','Contributed encoder, mapper and vocoder components to speech-to-speech accent translation.']},
+{company:'Samespace',role:'AI/ML Engineer Intern',date:'Feb 2025 – Jul 2025',items:['Deployed AI solutions and integrated LLM-powered features into production systems.','Supported model serving, evaluation and scalable AI workflow design.']},
+{company:'HyperVerge Nexus',role:'Research Fellow',date:'Feb 2024 – Jun 2024',items:['Developed Stable Diffusion image-generation pipelines with LoRA fine-tuning.','Researched document forgery detection and synthetic ID generation methods.','Built generation workflows using the Fooocus ecosystem.']},
+{company:'IndiaAI Mission',role:'Research Fellow',date:'Sep 2024 – Feb 2025',items:['Designed and developed the ICIP framework integrating Stable Diffusion, ControlNet, IP-Adapter and inpainting.','Secured IndiaAI Mission research funding and presented the framework at T&F ICICS 2025.']}
+]
+
+export const PUBLICATIONS=[
+{venue:'IEEE · JUN 2024',title:'Obstacle Detection in Path Planning for Unmanned Aerial Vehicles Based on YOLO',role:'CO-AUTHOR',desc:'Investigated YOLO-based object detection for autonomous UAV path planning, evaluating efficiency and deployment constraints in resource-limited environments.'},
+{venue:'T&F ICICS 2025 · FEB 2025',title:'ICIP: An Integrated Approach for AI Image Generation Using Stable Diffusion',role:'CORRESPONDING AUTHOR',desc:'Proposed a framework combining Stable Diffusion, ControlNet, IP-Adapter and inpainting for controllable image generation; fine-tuned on custom datasets.'}
+]
