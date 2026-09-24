@@ -1,0 +1,1 @@
+export const ROOM_BY_ID={systems:'systems',speech:'speech',generate:'generate',research:'research',work:'work',about:'about',contact:'contact'}
