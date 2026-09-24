@@ -1,0 +1,2 @@
+import {Text} from '@react-three/drei'
+export default function SignSystem(){return <group position={[0,2.6,20]}><Text fontSize={.65} color="#24231e" anchorX="center">ASHISH / AI LAB</Text><Text position={[0,-.48,0]} fontSize={.16} color="#777267" anchorX="center">SCROLL. EXPLORE. ENTER.</Text></group>}
