@@ -1,0 +1,2 @@
+import {Text} from '@react-three/drei'
+export default function Doodles(){return <group><Text position={[-2.1,2.1,-1]} fontSize={.15} color="#817b70" rotation={[0,.28,-.08]}>retrieve → context</Text><Text position={[2.1,1.4,-.8]} fontSize={.13} color="#817b70" rotation={[0,-.25,.07]}>model ≠ system</Text><Text position={[-2.15,3,-2]} fontSize={.1} color="#c66a52">field note / 017</Text></group>
