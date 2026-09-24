@@ -35,3 +35,6 @@ Professional facts are based on the supplied resume. Social/contact placeholders
 ## Notes
 
 The avatar and diagrams are original inline SVG/CSS/Canvas artwork. No reference-portfolio assets are copied.
+
+
+Deployment trigger: portfolio build checked and Pages workflow included.
