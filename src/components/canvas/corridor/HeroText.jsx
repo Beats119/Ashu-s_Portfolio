@@ -1,0 +1,2 @@
+import {Text} from '@react-three/drei'
+export default function HeroText({position=[0,0,0]}){return <group position={position}><Text fontSize={1.4} color="#27261f" anchorX="center">ASHISH</Text><Text position={[0,-.78,0]} fontSize={.21} color="#777268" anchorX="center">APPLIED AI ENGINEER</Text></group>}
