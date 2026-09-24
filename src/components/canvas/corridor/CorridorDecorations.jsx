@@ -1,0 +1,2 @@
+import {Text} from '@react-three/drei'
+export default function CorridorDecorations({zOffset=10,length=80}){return <group>{Array.from({length:12},(_,i)=><Text key={i} position={[(i%2?-1:1)*3.05,1.1,zOffset-5-i*6]} fontSize={.09} color="#898378" rotation={[0,0,i%2?.06:-.06]}>{i%2?'// TODO: EVALUATE':'// THINK / BUILD'}</Text>)}</group>
