@@ -1,0 +1,4 @@
+import {useRef} from 'react'
+import {useFrame,useThree} from '@react-three/fiber'
+import gsap from 'gsap'
+export default function SegmentDoors({position=[0,0,0]}){const l=useRef(),r=useRef(),open=useRef(false);const {camera}=useThree();useFrame(()=>{const d=Math.abs(camera.position.z-position[2]);if(d<9&&!open.current){open.current=true;gsap.to(l.current.rotation,{y:-Math.PI*.5,duration:.7});gsap.to(r.current.rotation,{y:Math.PI*.5,duration:.7})}if(d>15&&open.current){open.current=false;gsap.to(l.current.rotation,{y:0,duration:.6});gsap.to(r.current.rotation,{y:0,duration:.6})}});return <group position={position}><mesh ref={l} position={[-1,0,0]}><boxGeometry args={[1.95,3.5,.14]}/><meshBasicMaterial color="#eee8dc"/></mesh><mesh ref={r} position={[1,0,0]}><boxGeometry args={[1.95,3.5,.14]}/><meshBasicMaterial color="#eee8dc"/></mesh></group>
