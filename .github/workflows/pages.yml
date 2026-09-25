@@ -32,6 +32,13 @@ jobs:
           echo $! > /tmp/ashu-vite.pid
       - name: Browser smoke test
         run: node scripts/smoke.mjs
+      - name: Upload smoke diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-diagnostics
+          path: smoke-artifacts/
+          if-no-files-found: ignore
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
